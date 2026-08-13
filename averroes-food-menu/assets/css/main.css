@@ -1,0 +1,220 @@
+/*
+ * Averroes Restaurant - Luxury Digital Menu Styles
+ * Mobile-first, elegant and touch-friendly.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  --brand-gold: #C9A962;
+  --brand-gold-light: #E6CF9C;
+  --brand-gold-dark: #9A7E3C;
+  --brand-charcoal: #1A1A1A;
+  --brand-off-white: #FDFBF7;
+  --brand-warm-white: #F7F4EF;
+  --brand-cream: #F2EEE7;
+  --brand-text: #2C2C2C;
+  --brand-muted: #6B6B6B;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--brand-off-white);
+  color: var(--brand-text);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Custom scrollbar for horizontal nav */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Luxury glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Food card hover */
+.food-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+}
+.food-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+}
+
+/* Elegant image placeholder */
+.food-image {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--brand-cream) 0%, #E8E3DA 100%);
+}
+.food-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.food-card:hover .food-image img {
+  transform: scale(1.05);
+}
+.food-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--brand-gold-dark);
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  background: linear-gradient(135deg, var(--brand-cream), #E8E3DA);
+}
+
+/* Availability badges */
+.badge-available {
+  background: #EAF5EA;
+  color: #2E7D32;
+}
+.badge-out {
+  background: #FDECEA;
+  color: #C62828;
+}
+
+/* Category nav: true horizontal scroller */
+#category-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 0;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+}
+#category-nav > button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Sticky nav active pill */
+.cat-pill {
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.cat-pill.active {
+  background-color: var(--brand-charcoal);
+  color: #fff;
+  border-color: var(--brand-charcoal);
+}
+
+/* Filter chips */
+.filter-chip {
+  transition: all 0.2s ease;
+}
+.filter-chip.active {
+  background-color: var(--brand-gold);
+  color: var(--brand-charcoal);
+  border-color: var(--brand-gold);
+}
+
+/* Section headings */
+.category-heading {
+  position: relative;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+.category-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--brand-gold);
+}
+
+/* Cart drawer */
+.cart-drawer {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* Modal */
+.modal-overlay {
+  background: rgba(26, 26, 26, 0.65);
+  backdrop-filter: blur(4px);
+}
+
+/* Quantity stepper */
+.qty-stepper button {
+  touch-action: manipulation;
+}
+
+/* Inputs */
+input, select, textarea {
+  font-family: 'Inter', sans-serif;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--brand-gold);
+  box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.15);
+}
+
+/* Admin specific */
+.admin-sidebar a.active {
+  background: rgba(201, 169, 98, 0.12);
+  color: var(--brand-gold-dark);
+  border-right: 3px solid var(--brand-gold);
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--brand-charcoal);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}

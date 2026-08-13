@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Averroes Restaurant - Luxury QR Code digital menu and ordering for hotel guests.">
+  <meta name="theme-color" content="#1A1A1A">
+  <title>Averroes Restaurant | Digital Menu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#C9A962',
+              cream: '#FDFBF7',
+              charcoal: '#1A1A1A',
+              muted: '#6B6B6B'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-cream text-zinc-900 font-sans antialiased min-h-screen pb-28">
+
+  <!-- Sticky Luxury Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-zinc-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="./index.html" class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-gold overflow-hidden shrink-0">
+          <img id="site-logo" src="images/arlogo.png" alt="Logo" class="h-full w-full object-cover" onerror="this.onerror=null; this.src='images/arlogo.png';">
+        </div>
+        <div class="flex flex-col min-w-0">
+          <span id="brand-name" class="font-serif text-xl font-bold tracking-tight text-zinc-900 truncate">Averroes Restaurant</span>
+          <span id="brand-tagline" class="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold -mt-0.5 truncate">Luxury Hotel Dining</span>
+        </div>
+      </a>
+      <div class="flex items-center gap-2">
+        <button id="orders-toggle" class="h-10 w-10 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 flex items-center justify-center transition-colors" aria-label="My orders">
+          <i class="fa-solid fa-receipt text-lg"></i>
+        </button>
+        <button id="chat-toggle" class="relative h-10 w-10 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-700 flex items-center justify-center transition-colors" aria-label="Open chat">
+          <i class="fa-solid fa-comment-dots text-lg"></i>
+          <span id="chat-badge" class="hidden absolute -top-1 -right-1 h-5 min-w-[1.25rem] px-1 bg-red-600 text-white text-[10px] font-bold rounded-full items-center justify-center" style="display: none;"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Navigation Bar -->
+  <nav class="fixed top-[62px] left-0 right-0 z-40 bg-brand-cream/95 backdrop-blur border-b border-zinc-200/80 py-2.5">
+    <div class="max-w-6xl mx-auto px-4 min-w-0">
+      <div class="flex items-center gap-1">
+        <div id="category-nav" class="flex flex-1 min-w-0 max-w-full gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-1">
+          <button class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600 active">Menu</button>
+          <button data-cat="nigerian-breakfast" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Nigerian Breakfast</button>
+          <button data-cat="continental-breakfast" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Continental Breakfast</button>
+          <button data-cat="nigerian-dishes" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Nigerian Dishes</button>
+          <button data-cat="continental-dishes" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Continental Dishes</button>
+          <button data-cat="soup" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Soup</button>
+          <button data-cat="pepper-soup" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Pepper Soup</button>
+          <button data-cat="protein" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Protein</button>
+          <button data-cat="creaming-pasta" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Creaming Pasta</button>
+          <button data-cat="sauce" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Sauce</button>
+          <button data-cat="fries" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Fries</button>
+          <button data-cat="snacks" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Snacks</button>
+          <button data-cat="pasta" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Pasta</button>
+          <button data-cat="salad" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Salad</button>
+          <button data-cat="swallow" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Swallow</button>
+          <button data-cat="special-coffee" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Special Coffee</button>
+          <button data-cat="drinks" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Drinks</button>
+          <button data-cat="poolside-bar" class="cat-pill shrink-0 whitespace-nowrap snap-start px-4 py-2 rounded-full border border-zinc-300 text-xs font-semibold uppercase tracking-wider bg-white text-zinc-600">Poolside Bar</button>
+        </div>
+        <button id="nav-arrow" type="button" class="hidden shrink-0 h-9 w-9 rounded-full border border-zinc-300 bg-white text-brand-gold hover:bg-zinc-50 flex items-center justify-center transition-opacity" aria-label="Scroll right">
+          <i class="fa-solid fa-chevron-right text-xs"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search & Filters -->
+  <div id="search-bar" class="fixed top-[108px] left-0 right-0 z-30 bg-brand-cream border-b border-zinc-200/80 py-3">
+    <div class="max-w-6xl mx-auto px-4 space-y-3">
+      <div class="relative">
+        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-zinc-400">
+          <i class="fa-solid fa-magnifying-glass text-sm"></i>
+        </span>
+        <input type="text" id="search-input" placeholder="Search dishes, ingredients or categories..." class="w-full bg-white pl-10 pr-9 py-3 text-sm rounded-xl border border-zinc-300 focus:outline-none transition-all" autocomplete="off">
+        <button id="clear-search" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-zinc-400 hidden" aria-label="Clear search">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+      </div>
+      <div id="filter-chips" class="flex flex-wrap gap-2">
+        <!-- Filter chips injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Menu -->
+  <main id="menu-top" class="max-w-6xl mx-auto px-4 pt-[220px] pb-12">
+    <div id="menu-container" class="animate-fade-in">
+      <section id="section-nigerian-breakfast" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Nigerian Breakfast</h2><p class="text-sm text-zinc-500 mt-1">Start your day with authentic Nigerian breakfast selections.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-breakfast-01" data-name="Custard + Akara or Moi Moi" data-price="4500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/custard-akara-or-moi-moi.jpg" alt="Custard + Akara or Moi Moi" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Custard + Akara or Moi Moi</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦4,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-breakfast-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-breakfast-02" data-name="Pap + Akara or Moi Moi" data-price="4500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/pap-akara-or-moi-moi.jpg" alt="Pap + Akara or Moi Moi" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Pap + Akara or Moi Moi</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦4,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-breakfast-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-breakfast-03" data-name="Plantain + Vegetable Sauce &amp; Titus" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/plantain-vegetable-sauce-titus.jpg" alt="Plantain + Vegetable Sauce &amp; Titus" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Plantain + Vegetable Sauce &amp; Titus</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-breakfast-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-breakfast-04" data-name="Plantain Porridge &amp; Dry Fish" data-price="6000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/plantain-porridge-dry-fish.jpg" alt="Plantain Porridge &amp; Dry Fish" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Plantain Porridge &amp; Dry Fish</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,000</p><div class="card-controls"><button data-action="add" data-id="nigerian-breakfast-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-breakfast-05" data-name="Fried Plantain &amp; Egg Sauce" data-price="4500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/fried-plantain-egg-sauce.jpg" alt="Fried Plantain &amp; Egg Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fried Plantain &amp; Egg Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦4,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-breakfast-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-breakfast-06" data-name="Quaker Oats + Bread &amp; Milk" data-price="5200">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/quaker-oats-bread-milk.jpg" alt="Quaker Oats + Bread &amp; Milk" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Quaker Oats + Bread &amp; Milk</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,200</p><div class="card-controls"><button data-action="add" data-id="nigerian-breakfast-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-continental-breakfast" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Continental Breakfast</h2><p class="text-sm text-zinc-500 mt-1">Classic international breakfast prepared fresh every morning.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-breakfast-01" data-name="Onion Omelette" data-price="2200">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/onion-omelette.jpg" alt="Onion Omelette" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Onion Omelette</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,200</p><div class="card-controls"><button data-action="add" data-id="continental-breakfast-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-breakfast-02" data-name="Vegetable Omelette" data-price="2200">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/vegetable-omelette.jpg" alt="Vegetable Omelette" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Omelette</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,200</p><div class="card-controls"><button data-action="add" data-id="continental-breakfast-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-breakfast-03" data-name="Sardine Omelette" data-price="2500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/sardine-omelette.jpg" alt="Sardine Omelette" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Sardine Omelette</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,500</p><div class="card-controls"><button data-action="add" data-id="continental-breakfast-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-breakfast-04" data-name="Fried Omelette" data-price="1600">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/fried-omelette.jpg" alt="Fried Omelette" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fried Omelette</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦1,600</p><div class="card-controls"><button data-action="add" data-id="continental-breakfast-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-breakfast-05" data-name="Scrambled Egg" data-price="2500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/scrambled-egg.jpg" alt="Scrambled Egg" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Scrambled Egg</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,500</p><div class="card-controls"><button data-action="add" data-id="continental-breakfast-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-breakfast-06" data-name="Boiled Egg" data-price="1500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="/images/boiled-egg.jpg" alt="Boiled Egg" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Boiled Egg</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦1,500</p><div class="card-controls"><button data-action="add" data-id="continental-breakfast-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-breakfast-07" data-name="English Breakfast" data-price="7700">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/english-breakfast.jpg" alt="English Breakfast" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">English Breakfast</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦7,700</p><div class="card-controls"><button data-action="add" data-id="continental-breakfast-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-breakfast-08" data-name="Big American Breakfast" data-price="8700">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/big-american-breakfast.jpg" alt="Big American Breakfast" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Big American Breakfast</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,700</p><div class="card-controls"><button data-action="add" data-id="continental-breakfast-08" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-nigerian-dishes" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Nigerian Dishes</h2><p class="text-sm text-zinc-500 mt-1">Hearty local favourites prepared with premium ingredients.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-01" data-name="Jollof Rice &amp; Chicken" data-price="8000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/jollof-rice-chicken.jpg" alt="Jollof Rice &amp; Chicken" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Jollof Rice &amp; Chicken</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,000</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-02" data-name="Jollof Rice &amp; Turkey" data-price="10000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/jollof-rice-turkey.jpg" alt="Jollof Rice &amp; Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Jollof Rice &amp; Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦10,000</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-03" data-name="Jollof Rice &amp; Beef" data-price="8000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/jollof-rice-beef.jpg" alt="Jollof Rice &amp; Beef" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Jollof Rice &amp; Beef</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,000</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-04" data-name="Jollof Rice &amp; Goat Meat" data-price="8500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/jollof-rice-goat-meat.jpg" alt="Jollof Rice &amp; Goat Meat" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Jollof Rice &amp; Goat Meat</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-05" data-name="Fried Rice &amp; Chicken" data-price="9000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fried-rice-chicken.jpg" alt="Fried Rice &amp; Chicken" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fried Rice &amp; Chicken</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦9,000</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-06" data-name="Fried Rice &amp; Turkey" data-price="10000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fried-rice-turkey.jpg" alt="Fried Rice &amp; Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fried Rice &amp; Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦10,000</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-07" data-name="Fried Rice &amp; Beef" data-price="8500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fried-rice-beef.jpg" alt="Fried Rice &amp; Beef" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fried Rice &amp; Beef</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-08" data-name="Fried Rice &amp; Goat Meat" data-price="9000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fried-rice-goat-meat.jpg" alt="Fried Rice &amp; Goat Meat" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fried Rice &amp; Goat Meat</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦9,000</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-08" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-09" data-name="White Rice &amp; Chicken" data-price="8500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/white-rice-chicken.jpg" alt="White Rice &amp; Chicken" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">White Rice &amp; Chicken</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-09" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-10" data-name="White Rice &amp; Beef" data-price="8000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/white-rice-beef.jpg" alt="White Rice &amp; Beef" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">White Rice &amp; Beef</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,000</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-10" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-11" data-name="White Rice &amp; Turkey" data-price="9500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/white-rice-turkey.jpg" alt="White Rice &amp; Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">White Rice &amp; Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦9,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-11" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-12" data-name="Party Jollof Rice &amp; Chicken" data-price="8500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/party-jollof-rice-chicken.jpg" alt="Party Jollof Rice &amp; Chicken" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Party Jollof Rice &amp; Chicken</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-12" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="nigerian-dishes-13" data-name="Party Jollof Rice &amp; Turkey" data-price="9500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/party-jollof-rice-turkey.jpg" alt="Party Jollof Rice &amp; Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Party Jollof Rice &amp; Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦9,500</p><div class="card-controls"><button data-action="add" data-id="nigerian-dishes-13" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-continental-dishes" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Continental Dishes</h2><p class="text-sm text-zinc-500 mt-1">Elegant international plates from around the world.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-01" data-name="Chinese Rice &amp; Chicken" data-price="13000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/chinese-rice-chicken.jpg" alt="Chinese Rice &amp; Chicken" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Chinese Rice &amp; Chicken</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦13,000</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-02" data-name="Chinese Rice &amp; Turkey" data-price="14700">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/chinese-rice-turkey.jpg" alt="Chinese Rice &amp; Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Chinese Rice &amp; Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦14,700</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-03" data-name="Singapore Rice &amp; Chicken" data-price="17500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/singapore-rice-chicken.jpg" alt="Singapore Rice &amp; Chicken" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Singapore Rice &amp; Chicken</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦17,500</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-04" data-name="Singapore Rice &amp; Turkey" data-price="19500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/singapore-rice-turkey.jpg" alt="Singapore Rice &amp; Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Singapore Rice &amp; Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦19,500</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-05" data-name="Vegetable Rice &amp; Chicken" data-price="10500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-rice-chicken.jpg" alt="Vegetable Rice &amp; Chicken" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Rice &amp; Chicken</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦10,500</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-06" data-name="Vegetable Rice &amp; Turkey" data-price="12500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-rice-turkey.jpg" alt="Vegetable Rice &amp; Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Rice &amp; Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦12,500</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-07" data-name="Vegetable Rice &amp; Beef" data-price="9000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-rice-beef.jpg" alt="Vegetable Rice &amp; Beef" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Rice &amp; Beef</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦9,000</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-08" data-name="Vegetable Rice &amp; Goat Meat" data-price="10500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-rice-goat-meat.jpg" alt="Vegetable Rice &amp; Goat Meat" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Rice &amp; Goat Meat</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦10,500</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-08" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-09" data-name="Coconut Rice &amp; Chicken" data-price="11000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/coconut-rice-chicken.jpg" alt="Coconut Rice &amp; Chicken" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Coconut Rice &amp; Chicken</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦11,000</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-09" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="continental-dishes-10" data-name="Coconut Rice &amp; Turkey" data-price="13000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/coconut-rice-turkey.jpg" alt="Coconut Rice &amp; Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Coconut Rice &amp; Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦13,000</p><div class="card-controls"><button data-action="add" data-id="continental-dishes-10" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-soup" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Soup</h2><p class="text-sm text-zinc-500 mt-1">Rich traditional soups made with the finest proteins and vegetables.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-01" data-name="Atama Soup" data-price="8500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/atama-soup.jpg" alt="Atama Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Atama Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,500</p><div class="card-controls"><button data-action="add" data-id="soup-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-02" data-name="Afang Soup" data-price="8500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/afang-soup.jpg" alt="Afang Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Afang Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,500</p><div class="card-controls"><button data-action="add" data-id="soup-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-03" data-name="Vegetable Soup" data-price="8000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-soup.jpg" alt="Vegetable Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,000</p><div class="card-controls"><button data-action="add" data-id="soup-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-04" data-name="Bitter leaf Soup" data-price="6500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/bitter-leaf-soup.jpg" alt="Bitter leaf Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Bitter leaf Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,500</p><div class="card-controls"><button data-action="add" data-id="soup-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-05" data-name="Edikaikong Soup" data-price="9500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/edikaikong-soup.jpg" alt="Edikaikong Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Edikaikong Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦9,500</p><div class="card-controls"><button data-action="add" data-id="soup-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-06" data-name="Oha Soup" data-price="8000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/oha-soup.jpg" alt="Oha Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Oha Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,000</p><div class="card-controls"><button data-action="add" data-id="soup-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-07" data-name="Egusi Soup" data-price="6500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/egusi-soup.jpg" alt="Egusi Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Egusi Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,500</p><div class="card-controls"><button data-action="add" data-id="soup-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-08" data-name="Ogbono Soup" data-price="7000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/ogbono-soup.jpg" alt="Ogbono Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Ogbono Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦7,000</p><div class="card-controls"><button data-action="add" data-id="soup-08" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-09" data-name="Okro Soup" data-price="7500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/okro-soup.jpg" alt="Okro Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Okro Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦7,500</p><div class="card-controls"><button data-action="add" data-id="soup-09" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-10" data-name="Ofe Owerri Soup" data-price="8500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/ofe-owerri-soup.jpg" alt="Ofe Owerri Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Ofe Owerri Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,500</p><div class="card-controls"><button data-action="add" data-id="soup-10" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-11" data-name="Banga Soup" data-price="9000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/banga-soup.jpg" alt="Banga Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Banga Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦9,000</p><div class="card-controls"><button data-action="add" data-id="soup-11" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="soup-12" data-name="Fisherman Soup" data-price="11500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fisherman-soup.jpg" alt="Fisherman Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fisherman Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦11,500</p><div class="card-controls"><button data-action="add" data-id="soup-12" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-pepper-soup" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Pepper Soup</h2><p class="text-sm text-zinc-500 mt-1">Spiced, aromatic pepper soups to warm the soul.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pepper-soup-01" data-name="CatFish Pepper Soup" data-price="6500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/catfish-pepper-soup.jpg" alt="CatFish Pepper Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">CatFish Pepper Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,500</p><div class="card-controls"><button data-action="add" data-id="pepper-soup-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pepper-soup-02" data-name="Cow Tail pepper Soup" data-price="6000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/cow-tail-pepper-soup.jpg" alt="Cow Tail pepper Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Cow Tail pepper Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,000</p><div class="card-controls"><button data-action="add" data-id="pepper-soup-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pepper-soup-03" data-name="Goat Meat Soup" data-price="5000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/goat-meat-soup.jpg" alt="Goat Meat Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Goat Meat pepper Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,000</p><div class="card-controls"><button data-action="add" data-id="pepper-soup-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pepper-soup-04" data-name="Assorted Pepper Soup" data-price="5000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/assorted-pepper-soup.jpg" alt="Assorted Pepper Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Assorted Pepper Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,000</p><div class="card-controls"><button data-action="add" data-id="pepper-soup-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pepper-soup-05" data-name="Isiewu Soup" data-price="11500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/isiewu-soup.jpg" alt="Isiewu Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Isiewu Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦11,500</p><div class="card-controls"><button data-action="add" data-id="pepper-soup-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pepper-soup-06" data-name="Abacha" data-price="6000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/abacha.jpg" alt="Abacha" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Abacha</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,000</p><div class="card-controls"><button data-action="add" data-id="pepper-soup-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pepper-soup-07" data-name="Ugba" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/ugba.jpg" alt="Ugba" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Ugba</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="pepper-soup-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-protein" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Protein</h2><p class="text-sm text-zinc-500 mt-1">Grilled, fried and roasted premium protein selections.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-01" data-name="Turkey" data-price="8000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/turkey.jpg" alt="Turkey" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Turkey</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,000</p><div class="card-controls"><button data-action="add" data-id="protein-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-02" data-name="Chicken Lap" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/chicken-lap.jpg" alt="Chicken Lap" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Chicken Lap</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="protein-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-03" data-name="Vegetable Snail" data-price="12000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-snail.jpg" alt="Vegetable Snail" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Snail</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦12,000</p><div class="card-controls"><button data-action="add" data-id="protein-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-04" data-name="Fried Titus Fish" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fried-titus-fish.jpg" alt="Fried Titus Fish" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fried Titus Fish</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="protein-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-05" data-name="Goat Meat" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/goat-meat.jpg" alt="Goat Meat" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Goat Meat</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="protein-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-06" data-name="Beef" data-price="5000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/beef.jpg" alt="Beef" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Beef</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,000</p><div class="card-controls"><button data-action="add" data-id="protein-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-07" data-name="Assorted" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/assorted.jpg" alt="Assorted" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Assorted</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="protein-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-08" data-name="Cow Leg" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/cow-leg.jpg" alt="Cow Leg" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Cow Leg</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="protein-08" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-09" data-name="Honey great Wings" data-price="5000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/honey-great-wings.jpg" alt="Honey great Wings" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Honey Chicken Wings</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,000</p><div class="card-controls"><button data-action="add" data-id="protein-09" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-10" data-name="Pepped Catfish" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/peppered-catfish.jpg" alt="Peppered Catfish" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Peppered Catfish</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="protein-10" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-11" data-name="Spicy Wings" data-price="4000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/spicy-wings.jpg" alt="Spicy Wings" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Spicy Chicken Wings</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦4,000</p><div class="card-controls"><button data-action="add" data-id="protein-11" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-12" data-name="Crispy Wings" data-price="4500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/crispy-wings.jpg" alt="Crispy Wings" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Crispy Chicken Wings</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦4,500</p><div class="card-controls"><button data-action="add" data-id="protein-12" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="protein-13" data-name="Dry Fish" data-price="4500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/dry-fish.jpg" alt="Dry Fish" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Dry Fish</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦4,500</p><div class="card-controls"><button data-action="add" data-id="protein-13" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-creaming-pasta" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Creaming Pasta</h2><p class="text-sm text-zinc-500 mt-1">Silky, creamy pasta creations finished to perfection.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="creaming-pasta-01" data-name="Cream Of Chicken Soup &amp; Bread" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/cream-of-chicken-soup-bread.jpg" alt="Cream Of Chicken Soup &amp; Bread" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Cream Of Chicken Soup &amp; Bread</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="creaming-pasta-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="creaming-pasta-02" data-name="Cream Of Mushroom &amp; Bread" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/cream-of-mushroom-bread.jpg" alt="Cream Of Mushroom &amp; Bread" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Cream Of Mushroom &amp; Bread</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="creaming-pasta-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="creaming-pasta-03" data-name="Cream Of Sweet Corn Soup" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/cream-of-sweet-corn-soup.jpg" alt="Cream Of Sweet Corn Soup" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Cream Of Sweet Corn Soup</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="creaming-pasta-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-sauce" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Sauce</h2><p class="text-sm text-zinc-500 mt-1">Classic and signature sauces to complement every plate.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-01" data-name="Egg Sauce" data-price="2500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/egg-sauce.jpg" alt="Egg Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Egg Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,500</p><div class="card-controls"><button data-action="add" data-id="sauce-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-02" data-name="Fish Sauce" data-price="3000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fish-sauce.jpg" alt="Fish Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fish Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,000</p><div class="card-controls"><button data-action="add" data-id="sauce-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-03" data-name="Vegetable Sauce" data-price="3000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-sauce.jpg" alt="Vegetable Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,000</p><div class="card-controls"><button data-action="add" data-id="sauce-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-04" data-name="Liver Sauce" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/liver-sauce.jpg" alt="Liver Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Liver Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="sauce-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-05" data-name="Shrimp Sauce" data-price="4500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/shrimp-sauce.jpg" alt="Shrimp Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Shrimp Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦4,500</p><div class="card-controls"><button data-action="add" data-id="sauce-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-06" data-name="Chicken Curry Sauce" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/chicken-curry-sauce.jpg" alt="Chicken Curry Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Chicken Curry Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="sauce-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-07" data-name="Beef Sauce" data-price="5000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/beef-sauce.jpg" alt="Beef Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Beef Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,000</p><div class="card-controls"><button data-action="add" data-id="sauce-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-08" data-name="Shredded Chicken Sauce" data-price="5000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/shredded-chicken-sauce.jpg" alt="Shredded Chicken Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Shredded Chicken Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,000</p><div class="card-controls"><button data-action="add" data-id="sauce-08" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-09" data-name="Shredded Beef Sauce" data-price="5000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/shredded-beef-sauce.jpg" alt="Shredded Beef Sauce" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Shredded Beef Sauce</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,000</p><div class="card-controls"><button data-action="add" data-id="sauce-09" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="sauce-10" data-name="Chicken Hot plate" data-price="22000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/chicken-hot-plate.jpg" alt="Chicken Hot plate" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Chicken Hot plate</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦22,000</p><div class="card-controls"><button data-action="add" data-id="sauce-10" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-fries" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Fries</h2><p class="text-sm text-zinc-500 mt-1">Golden, crispy sides and fries.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="fries-01" data-name="Sweet Potato Fries" data-price="3300">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/sweet-potato-fries.jpg" alt="Sweet Potato Fries" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Sweet Potato Fries</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,300</p><div class="card-controls"><button data-action="add" data-id="fries-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="fries-02" data-name="French Fries" data-price="3300">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/french-fries.jpg" alt="French Fries" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">French Fries</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,300</p><div class="card-controls"><button data-action="add" data-id="fries-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="fries-03" data-name="Yam Fried" data-price="3300">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/yam-fried.jpg" alt="Yam Fried" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Yam Fried</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,300</p><div class="card-controls"><button data-action="add" data-id="fries-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="fries-04" data-name="Fried Plantain" data-price="3300">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fried-plantain.jpg" alt="Fried Plantain" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fried Plantain</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,300</p><div class="card-controls"><button data-action="add" data-id="fries-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="fries-05" data-name="Boiled Yam" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/boiled-yam.jpg" alt="Boiled Yam" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Boiled Yam</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="fries-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="fries-06" data-name="Boiled Ripe Plantain" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/boiled-ripe-plantain.jpg" alt="Boiled Ripe Plantain" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Boiled Ripe Plantain</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="fries-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="fries-07" data-name="Boiled Unripe Plantain" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/boiled-unripe-plantain.jpg" alt="Boiled Unripe Plantain" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Boiled Unripe Plantain</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="fries-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="fries-08" data-name="Moi Moi Leaf Wrap" data-price="1500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/moi-moi-leaf-wrap.jpg" alt="Moi Moi Leaf Wrap" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Moi Moi Leaf Wrap</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦1,500</p><div class="card-controls"><button data-action="add" data-id="fries-08" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-snacks" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Snacks</h2><p class="text-sm text-zinc-500 mt-1">Light bites for any time of day.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-01" data-name="Chicken Shawarma+Sausage" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/chicken-shawarma-sausage.jpg" alt="Chicken Shawarma+Sausage" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Chicken Shawarma+Sausage</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="snacks-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-02" data-name="Beef Shawarma+Sausage" data-price="5500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/beef-shawarma-sausage.jpg" alt="Beef Shawarma+Sausage" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Beef Shawarma+Sausage</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,500</p><div class="card-controls"><button data-action="add" data-id="snacks-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-03" data-name="Burger" data-price="6000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/burger.jpg" alt="Burger" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Burger</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,000</p><div class="card-controls"><button data-action="add" data-id="snacks-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-04" data-name="Extra Cheese" data-price="1000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/extra-cheese.jpg" alt="Extra Cheese" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Extra Cheese</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦1,000</p><div class="card-controls"><button data-action="add" data-id="snacks-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-05" data-name="Pizza Mini" data-price="10500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/pizza-mini.jpg" alt="Pizza Mini" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Pizza Mini</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦10,500</p><div class="card-controls"><button data-action="add" data-id="snacks-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-06" data-name="Jumbo Pizza" data-price="16000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/jumbo-pizza.jpg" alt="Jumbo Pizza" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Jumbo Pizza</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦16,000</p><div class="card-controls"><button data-action="add" data-id="snacks-06" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-07" data-name="Odogwu Pizza" data-price="19500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/odogwu-pizza.jpg" alt="Odogwu Pizza" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Odogwu Pizza</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦19,500</p><div class="card-controls"><button data-action="add" data-id="snacks-07" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-08" data-name="Plain Doughnut" data-price="1000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/plain-doughnut.jpg" alt="Plain Doughnut" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Plain Doughnut</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦1,000</p><div class="card-controls"><button data-action="add" data-id="snacks-08" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-09" data-name="Jam Doughnut" data-price="1500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/jam-doughnut.jpg" alt="Jam Doughnut" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Jam Doughnut</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦1,500</p><div class="card-controls"><button data-action="add" data-id="snacks-09" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-10" data-name="Meat Pie" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/meat-pie.jpg" alt="Meat Pie" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Meat Pie</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="snacks-10" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-11" data-name="Fish Pie" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/fish-pie.jpg" alt="Fish Pie" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Fish Pie</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="snacks-11" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-12" data-name="Chicken Pie" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/chicken-pie.jpg" alt="Chicken Pie" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Chicken Pie</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="snacks-12" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-13" data-name="Vegetable Sandwich" data-price="2500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-sandwich.jpg" alt="Vegetable Sandwich" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Sandwich</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,500</p><div class="card-controls"><button data-action="add" data-id="snacks-13" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-14" data-name="Averroes Special Sandwich" data-price="6500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/averroes-special-sandwich.jpg" alt="Averroes Special Sandwich" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Averroes Special Sandwich</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,500</p><div class="card-controls"><button data-action="add" data-id="snacks-14" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="snacks-15" data-name="Club Sandwich" data-price="4500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/club-sandwich.jpg" alt="Club Sandwich" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Club Sandwich</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦4,500</p><div class="card-controls"><button data-action="add" data-id="snacks-15" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-pasta" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Pasta</h2><p class="text-sm text-zinc-500 mt-1">Classic pasta dishes in rich, balanced sauces.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pasta-01" data-name="Creamy Pasta" data-price="5000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/creamy-pasta.jpg" alt="Creamy Pasta" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Creamy Pasta</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦5,000</p><div class="card-controls"><button data-action="add" data-id="pasta-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pasta-02" data-name="Jollof Pasta" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/jollof-pasta.jpg" alt="Jollof Pasta" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Jollof Pasta</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="pasta-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pasta-03" data-name="White Pasta" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/white-pasta.jpg" alt="White Pasta" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">White Pasta</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="pasta-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="pasta-04" data-name="Alfredo Pasta" data-price="8500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/alfredo-pasta.jpg" alt="Alfredo Pasta" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Alfredo Pasta</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦8,500</p><div class="card-controls"><button data-action="add" data-id="pasta-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-salad" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Salad</h2><p class="text-sm text-zinc-500 mt-1">Fresh, crisp salads and healthy bowls.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="salad-01" data-name="Coleslaw" data-price="1450">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/coleslaw.jpg" alt="Coleslaw" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Coleslaw</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦1,450</p><div class="card-controls"><button data-action="add" data-id="salad-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="salad-02" data-name="Side Salad" data-price="1250">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/side-salad.jpg" alt="Side Salad" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Side Salad</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦1,250</p><div class="card-controls"><button data-action="add" data-id="salad-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="salad-03" data-name="Vegetable Salad" data-price="3500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/vegetable-salad.jpg" alt="Vegetable Salad" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Vegetable Salad</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,500</p><div class="card-controls"><button data-action="add" data-id="salad-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="salad-04" data-name="Ceasar Salad" data-price="6200">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/ceasar-salad.jpg" alt="Ceasar Salad" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Ceasar Salad</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,200</p><div class="card-controls"><button data-action="add" data-id="salad-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="salad-05" data-name="Chicken Salad" data-price="6500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/chicken-salad.jpg" alt="Chicken Salad" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Chicken Salad</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦6,500</p><div class="card-controls"><button data-action="add" data-id="salad-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-swallow" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Swallow</h2><p class="text-sm text-zinc-500 mt-1">Traditional Nigerian swallows served with love.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="swallow-01" data-name="Eba" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/eba.jpg" alt="Eba" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Eba</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="swallow-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="swallow-02" data-name="Semovita" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/semovita.jpg" alt="Semovita" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Semovita</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="swallow-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="swallow-03" data-name="Wheat" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/wheat.jpg" alt="Wheat" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Wheat</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="swallow-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="swallow-04" data-name="Sam-Vita" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/sam-vita.jpg" alt="Sam-Vita" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Sam-Vita</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="swallow-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="swallow-05" data-name="Poundo" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/poundo.jpg" alt="Poundo" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Poundo</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="swallow-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-special-coffee" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Special Coffee</h2><p class="text-sm text-zinc-500 mt-1">Artisan coffee, teas and espresso.</p></div>
+        <div class="space-y-3">
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="special-coffee-01" data-name="Nescafe Gold" data-price="3000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/nescafe-gold.jpg" alt="Nescafe Gold" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Nescafe Gold</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦3,000</p><div class="card-controls"><button data-action="add" data-id="special-coffee-01" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="special-coffee-02" data-name="natural Green Tea" data-price="2500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/natural-green-tea.jpg" alt="natural Green Tea" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">natural Green Tea</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,500</p><div class="card-controls"><button data-action="add" data-id="special-coffee-02" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="special-coffee-03" data-name="Hot Chocolate" data-price="2500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/hot-chocolate.jpg" alt="Hot Chocolate" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Hot Chocolate</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,500</p><div class="card-controls"><button data-action="add" data-id="special-coffee-03" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="special-coffee-04" data-name="Nescafe Classic Coffee" data-price="2500">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/nescafe-classic-coffee.jpg" alt="Nescafe Classic Coffee" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Nescafe Classic Coffee</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,500</p><div class="card-controls"><button data-action="add" data-id="special-coffee-04" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+          <article class="bg-white rounded-2xl border border-zinc-100 p-3" data-id="special-coffee-05" data-name="Lipton" data-price="2000">
+            <div class="flex items-start gap-4">
+              <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0"><img src="images/lipton.jpg" alt="Lipton" class="h-full w-full object-cover" /></div>
+              <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">Lipton</h3></div>
+              <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">₦2,000</p><div class="card-controls"><button data-action="add" data-id="special-coffee-05" class="h-9 px-5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm rounded-lg transition-colors">Order</button></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="section-drinks" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Drinks</h2><p class="text-sm text-zinc-500 mt-1">Chilled soft drinks, juices and refreshments.</p></div>
+        <div class="space-y-3">
+        </div>
+      </section>
+      <section id="section-poolside-bar" class="mb-12 scroll-mt-48">
+        <div class="category-heading"><h2 class="font-serif text-2xl text-zinc-900">Poolside Bar</h2><p class="text-sm text-zinc-500 mt-1">Cocktails, beers and refreshing drinks served by the pool.</p></div>
+        <div class="space-y-3">
+        </div>
+      </section>
+      <div id="no-results" class="hidden text-center py-16 bg-white/60 rounded-2xl border border-zinc-200">
+        <div class="h-16 w-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fa-solid fa-utensils text-amber-600 text-2xl"></i></div>
+        <h3 class="font-serif font-semibold text-xl text-zinc-800">No dishes found</h3>
+        <p class="text-zinc-500 text-sm mt-2 max-w-xs mx-auto">Try adjusting your search or filters to find something delightful.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Floating Cart Drawer -->
+  <div id="cart-drawer" class="cart-drawer fixed bottom-0 left-0 right-0 z-50 translate-y-full opacity-0 pointer-events-none">
+    <div class="max-w-6xl mx-auto px-4 pb-4">
+      <div class="bg-zinc-900 text-white rounded-2xl shadow-2xl border border-zinc-800 overflow-hidden">
+        <!-- Expanded Details -->
+        <div id="cart-details" class="hidden border-b border-zinc-800 px-4 py-4 max-h-72 overflow-y-auto">
+          <div class="flex items-center justify-between pb-2 border-b border-zinc-800 mb-3">
+            <span class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">Order Summary</span>
+            <button id="clear-cart" class="text-[10px] text-red-400 hover:text-red-300 font-semibold" aria-label="Clear cart">Clear All</button>
+          </div>
+          <div id="cart-items" class="space-y-1 text-sm"></div>
+          <div class="mt-4 pt-3 border-t border-zinc-800 space-y-2 text-sm">
+            <div class="flex justify-between text-zinc-100 font-bold text-base pt-2 border-t border-zinc-800">
+              <span>Order Total</span>
+              <span id="cart-grand" class="text-brand-gold">₦0</span>
+            </div>
+          </div>
+        </div>
+        <!-- Cart Strip -->
+        <div class="px-4 py-3.5 flex items-center justify-between gap-3">
+          <button id="cart-toggle" class="flex items-center gap-3 shrink-0" aria-label="Toggle cart">
+            <div class="relative h-11 w-11 bg-zinc-800 rounded-xl flex items-center justify-center border border-zinc-700 hover:border-brand-gold transition-colors">
+              <i class="fa-solid fa-shopping-bag text-brand-gold text-lg"></i>
+              <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-brand-gold text-zinc-900 font-bold text-[10px] h-5 w-5 rounded-full flex items-center justify-center border-2 border-zinc-900">0</span>
+            </div>
+            <div class="text-left hidden sm:block">
+              <span class="text-[10px] text-zinc-400 uppercase tracking-wider font-medium">Order Total</span>
+              <div id="cart-total" class="font-bold text-brand-gold text-base">₦0</div>
+            </div>
+          </button>
+          <button id="checkout-open" class="flex-1 bg-brand-gold hover:bg-[#B89A50] active:scale-[0.98] text-zinc-900 font-bold py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition-all">
+            <span>Place Order</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Place Order Modal -->
+  <div id="checkout-modal" class="fixed inset-0 z-[60] hidden flex-col justify-end sm:justify-center">
+    <div class="modal-overlay absolute inset-0" id="close-checkout" aria-label="Close"></div>
+    <div class="relative z-10 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl max-w-lg w-full mx-auto sm:my-8 max-h-[90vh] overflow-y-auto">
+      <div class="p-5 sm:p-6 space-y-5">
+        <div class="flex items-center justify-between">
+          <h2 class="font-serif text-2xl font-bold text-zinc-900">Place Order</h2>
+          <button id="close-checkout-icon" class="h-8 w-8 rounded-full bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 transition-colors" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <form id="checkout-form" onsubmit="return false;" class="space-y-4">
+          <div>
+            <label for="order-location" class="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Where are you ordering from?</label>
+            <select id="order-location" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-sm text-zinc-800 focus:outline-none">
+              <option value="">Select location</option>
+              <option value="Hotel Room">Hotel Room</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Poolside">Poolside</option>
+              <option value="Lounge">Lounge</option>
+              <option value="Conference Hall">Conference Hall</option>
+              <option value="Takeaway">Takeaway</option>
+            </select>
+          </div>
+
+          <div id="location-field" class="hidden">
+            <label id="location-label" for="location-input" class="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Location details</label>
+            <input type="text" id="location-input" class="w-full bg-white border border-zinc-300 rounded-xl px-4 py-3 text-sm text-zinc-800 focus:outline-none" placeholder="e.g. 204">
+          </div>
+        </form>
+
+        <div>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-3">Submit Your Order</span>
+          <div id="checkout-actions" class="grid grid-cols-1 gap-3">
+            <button data-checkout="direct" class="flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 active:scale-[0.98] text-white font-semibold py-3 px-4 rounded-xl text-sm transition-all">
+              <i class="fa-solid fa-paper-plane text-lg"></i>
+              <span>Send Order to Admin</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Chat -->
+  <div id="chat-modal" class="fixed inset-0 z-[80] hidden flex-col justify-end sm:justify-center">
+    <div class="modal-overlay absolute inset-0" id="close-chat" aria-label="Close"></div>
+    <div class="relative z-10 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl max-w-lg w-full mx-auto sm:my-8 max-h-[90vh] overflow-hidden flex flex-col">
+      <div class="p-4 border-b border-zinc-200 flex items-center justify-between">
+        <h2 class="font-serif text-xl font-bold text-zinc-900">Hotel Concierge</h2>
+        <button id="close-chat-icon" class="h-8 w-8 rounded-full bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 bg-zinc-50 min-h-[300px] max-h-[60vh]"></div>
+      <form id="chat-form" class="p-4 border-t border-zinc-200 bg-white flex gap-2" onsubmit="return false;">
+        <input type="text" id="chat-input" class="flex-1 border border-zinc-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none" placeholder="Type your message..." autocomplete="off">
+        <button type="submit" class="h-10 w-10 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition-colors"><i class="fa-solid fa-paper-plane text-sm"></i></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Customer Orders -->
+  <div id="orders-modal" class="fixed inset-0 z-[80] hidden flex-col justify-end sm:justify-center">
+    <div class="modal-overlay absolute inset-0" id="close-orders" aria-label="Close"></div>
+    <div class="relative z-10 bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl max-w-lg w-full mx-auto sm:my-8 max-h-[90vh] overflow-hidden flex flex-col">
+      <div class="p-4 border-b border-zinc-200 flex items-center justify-between">
+        <h2 class="font-serif text-xl font-bold text-zinc-900">My Orders</h2>
+        <button id="close-orders-icon" class="h-8 w-8 rounded-full bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="customer-orders-list" class="flex-1 overflow-y-auto p-4 space-y-3 bg-zinc-50 min-h-[300px] max-h-[60vh]"></div>
+    </div>
+  </div>
+
+  <!-- Image Lightbox -->
+  <style>
+    article[data-id] img { cursor: pointer; }
+  </style>
+  <div id="image-lightbox" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 opacity-0 pointer-events-none transition-opacity duration-300" aria-modal="true" role="dialog" aria-hidden="true">
+    <button id="lightbox-close" class="absolute top-4 right-4 h-11 w-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-colors" aria-label="Close image">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-2xl shadow-2xl scale-95 transition-transform duration-300" />
+  </div>
+
+  <script>
+    (function () {
+      const lightbox = document.getElementById('image-lightbox');
+      const lightboxImg = document.getElementById('lightbox-image');
+      const closeBtn = document.getElementById('lightbox-close');
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        lightbox.classList.remove('opacity-0', 'pointer-events-none');
+        lightbox.setAttribute('aria-hidden', 'false');
+        lightboxImg.classList.remove('scale-95');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.add('opacity-0', 'pointer-events-none');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImg.classList.add('scale-95');
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('click', function (e) {
+        const img = e.target.closest('article[data-id] img');
+        if (img) {
+          openLightbox(img.src, img.alt);
+        }
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', function (e) {
+        if (e.target !== lightboxImg) closeLightbox();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !lightbox.classList.contains('opacity-0')) closeLightbox();
+      });
+    })();
+  </script>
+
+  <footer class="max-w-6xl mx-auto px-4 py-6 text-center">
+    <div class="bg-white rounded-2xl border border-zinc-200 p-4 shadow-sm">
+      <p id="hotel-address" class="text-sm text-zinc-600"></p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/data.js"></script>
+  <script src="./assets/js/db.js"></script>
+  <script src="./assets/js/customer.js"></script>
+</body>
+</html>

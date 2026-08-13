@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Averroes Signature Jollof Rice Platter",
+    "category": "Local",
+    "price": 8500,
+    "description": "Richly spiced smoky Jollof rice, served with tender grilled quarter chicken, sweet fried plantains (dodo), and a crisp seasonal side salad.",
+    "image": "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": 2,
+    "name": "Gourmet Egusi & Pounded Yam",
+    "category": "Local",
+    "price": 11000,
+    "description": "Slow-simmered melon seed soup cooked with spinach, stockfish, and smoked prawns, served alongside smooth, warm, freshly pounded yam.",
+    "image": "https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": 3,
+    "name": "Truffle Beef Burger",
+    "category": "Continental",
+    "price": 9500,
+    "description": "A premium Wagyu beef blend patty, topped with aged cheddar, wild arugula, caramelized onions, and house-made truffle aioli on a toasted brioche bun.",
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": 4,
+    "name": "Grilled Ribeye Steak with Herb Butter",
+    "category": "Grills",
+    "price": 18500,
+    "description": "A 300g choice cut ribeye steak, seasoned with sea salt and black peppercorns, flame-grilled and basted with rosemary-infused garlic butter.",
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": 5,
+    "name": "Premium Chapman Cocktail",
+    "category": "Drinks",
+    "price": 4500,
+    "description": "A classic Nigerian resort refresher with a secret mix of Angostura bitters, Fanta, Sprite, blackcurrant cordial, and fresh cucumber-citrus garnishes.",
+    "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600"
+  },
+  {
+    "id": 6,
+    "name": "Crispy Fried Calamari with Garlic Aioli",
+    "category": "Continental",
+    "price": 7500,
+    "description": "Tender calamari rings dusted in seasoned flour, flash-fried to golden perfection, served with fresh lemon wedges and a zesty garlic dip.",
+    "image": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&q=80&w=600"
+  }
+]
