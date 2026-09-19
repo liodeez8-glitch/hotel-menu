@@ -1,0 +1,14 @@
+{
+  "name": "menu-scanner",
+  "version": "1.0.0",
+  "description": "A premium, high-performance, mobile-first digital food menu designed for luxury hospitality venues like **Averroes Villa**.",
+  "main": "test-db.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.2"
+  }
+}
