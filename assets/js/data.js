@@ -158,7 +158,7 @@
   const SETTINGS = {
     restaurantName: 'Averroes Restaurant',
     tagline: 'Luxury Hotel Dining',
-    address: 'Averroes Hotel, Lagos, Nigeria',
+    address: 'Averroes Hotel, Abuja',
     currency: '₦',
     locale: 'en-NG',
     logoUrl: ''
