@@ -115,7 +115,7 @@
       <article class="bg-white rounded-2xl border border-zinc-100 p-3${unavailable ? ' opacity-60' : ''}" data-id="${meal.id}" data-name="${name}" data-price="${meal.price}">
         <div class="flex items-start gap-4">
           <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0">${imgHtml}</div>
-          <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 line-clamp-2 leading-snug">${name}</h3></div>
+          <div class="min-w-0 flex-1 pt-1 max-w-full"><h3 class="font-serif font-semibold text-lg text-zinc-900 whitespace-nowrap overflow-x-auto no-scrollbar leading-snug">${name}</h3></div>
           <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">${formatMoney(meal.price)}</p>${statusBadge}</div>
         </div>
       </article>`;
