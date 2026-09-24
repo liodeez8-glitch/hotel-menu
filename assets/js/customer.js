@@ -106,7 +106,7 @@
     const name = escapeHtml(meal.name);
     const imgSrc = meal.image ? escapeHtml(meal.image) : '';
     const imgHtml = imgSrc
-      ? `<img src="${imgSrc}" alt="${name}" class="h-full w-full object-cover${unavailable ? ' blur-[2px] grayscale' : ''}" />`
+      ? `<img src="${imgSrc}" alt="${name}" loading="lazy" class="h-full w-full object-cover${unavailable ? ' blur-[2px] grayscale' : ''}" />`
       : `<div class="h-full w-full flex items-center justify-center"><i class="fa-solid fa-utensils text-amber-500 text-3xl"></i></div>`;
     const statusBadge = unavailable
       ? `<span class="text-[10px] font-bold uppercase tracking-wide px-2.5 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-100 whitespace-nowrap">Not Available</span>`
@@ -115,7 +115,7 @@
       <article class="bg-white rounded-2xl border border-zinc-100 p-3${unavailable ? ' opacity-60' : ''}" data-id="${meal.id}" data-name="${name}" data-price="${meal.price}">
         <div class="flex items-start gap-4">
           <div class="h-24 w-24 rounded-2xl overflow-hidden bg-amber-100 shrink-0">${imgHtml}</div>
-          <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 truncate leading-snug">${name}</h3></div>
+          <div class="min-w-0 flex-1 pt-1"><h3 class="font-serif font-semibold text-lg text-zinc-900 line-clamp-2 leading-snug">${name}</h3></div>
           <div class="shrink-0 flex flex-col items-end gap-2 pt-1"><p class="text-red-600 font-extrabold text-2xl leading-none">${formatMoney(meal.price)}</p>${statusBadge}</div>
         </div>
       </article>`;
@@ -200,8 +200,14 @@
     }, 5000);
   }
 
-  function init() {
+  async function init() {
     cacheDom();
+    
+    // Wait for the database to fetch live data before overriding the pre-rendered HTML
+    if (window.AverroesDB && window.AverroesDB.init) {
+      await window.AverroesDB.init();
+    }
+    
     renderBranding();
     renderNav();
     renderFilters();
