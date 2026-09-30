@@ -1223,8 +1223,43 @@
     }, 4000);
   }
 
-  function init() {
+  function renderBranding() {
+    const settings = AverroesDB.getSettings();
+    const title = settings.restaurantName || 'Restaurant Admin';
+    
+    // Login view branding
+    const loginTitle = document.getElementById('admin-login-title');
+    const loginLogo = document.getElementById('admin-login-logo');
+    const loginFallback = document.getElementById('admin-login-fallback');
+    
+    if (loginTitle) loginTitle.textContent = title;
+    if (loginLogo && settings.logoUrl) {
+      loginLogo.src = settings.logoUrl;
+      loginLogo.classList.remove('hidden');
+      if (loginFallback) loginFallback.classList.add('hidden');
+    }
+    
+    // Sidebar branding
+    const sidebarTitle = document.getElementById('admin-sidebar-title');
+    const sidebarLogo = document.getElementById('admin-sidebar-logo');
+    const sidebarFallback = document.getElementById('admin-sidebar-fallback');
+    
+    if (sidebarTitle) sidebarTitle.textContent = title;
+    if (sidebarLogo && settings.logoUrl) {
+      sidebarLogo.src = settings.logoUrl;
+      sidebarLogo.classList.remove('hidden');
+      if (sidebarFallback) sidebarFallback.classList.add('hidden');
+    }
+    
+    document.title = title + ' | Admin Dashboard';
+  }
+
+  async function init() {
     cacheDom();
+    if (window.AverroesDB && window.AverroesDB.init) {
+      await window.AverroesDB.init();
+    }
+    renderBranding();
     attachGlobalListeners();
     toggleViews();
     startChatPolling();

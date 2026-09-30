@@ -185,11 +185,16 @@
 
   function renderBranding() {
     const settings = AverroesDB.getSettings();
-    if (dom.brandName) dom.brandName.textContent = settings.restaurantName || 'Averroes Restaurant';
-    if (dom.brandTagline) dom.brandTagline.textContent = settings.tagline || 'Luxury Hotel Dining';
+    if (dom.brandName) dom.brandName.textContent = settings.restaurantName || 'Restaurant Menu';
+    if (dom.brandTagline) dom.brandTagline.textContent = settings.tagline || '';
     if (dom.hotelAddress) dom.hotelAddress.textContent = settings.address || '';
-    document.title = (settings.restaurantName || 'Averroes Restaurant') + ' | Digital Menu';
-    if (dom.siteLogo) dom.siteLogo.src = settings.logoUrl || 'images/arlogo.png';
+    document.title = (settings.restaurantName || 'Restaurant Menu') + ' | Digital Menu';
+    if (dom.siteLogo && settings.logoUrl) {
+      dom.siteLogo.src = settings.logoUrl;
+      dom.siteLogo.classList.remove('hidden');
+      var fallback = document.getElementById('site-logo-fallback');
+      if (fallback) fallback.classList.add('hidden');
+    }
   }
 
   function startPolling() {
@@ -203,11 +208,17 @@
   async function init() {
     cacheDom();
     
-    // Wait for the database to fetch live data before overriding the pre-rendered HTML
+    // Wait for the database to fetch live data
     if (window.AverroesDB && window.AverroesDB.init) {
       await window.AverroesDB.init();
     }
     
+    // Hide skeleton and show actual menu
+    const skeletonLoader = document.getElementById('skeleton-loader');
+    const menuContainer = document.getElementById('menu-container');
+    if (skeletonLoader) skeletonLoader.classList.add('hidden');
+    if (menuContainer) menuContainer.style.display = 'block';
+
     renderBranding();
     renderNav();
     renderFilters();

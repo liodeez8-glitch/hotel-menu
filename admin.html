@@ -41,16 +41,17 @@
   <div id="login-view" class="min-h-screen flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-2xl border border-zinc-200 shadow-2xl p-8">
       <div class="flex flex-col items-center mb-8">
-        <div class="h-16 w-16 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-gold mb-4">
-          <span class="font-serif text-brand-gold font-bold text-3xl">A</span>
+        <div class="h-16 w-16 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-gold mb-4 overflow-hidden">
+          <img id="admin-login-logo" src="" class="h-full w-full object-cover hidden">
+          <span id="admin-login-fallback" class="font-serif text-brand-gold font-bold text-3xl">⋮</span>
         </div>
-        <h1 class="font-serif text-2xl font-bold text-zinc-900 text-center">Averroes Restaurant</h1>
-        <p class="text-zinc-500 text-sm">Admin Dashboard</p>
+        <h1 id="admin-login-title" class="font-serif text-2xl font-bold text-zinc-900 text-center">Admin Dashboard</h1>
+        <p class="text-zinc-500 text-sm">Please log in</p>
       </div>
       <form id="login-form" class="space-y-4">
         <div>
           <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Username</label>
-          <input type="text" name="username" value="ave_admin" class="w-full border border-zinc-300 rounded-lg px-4 py-3 text-sm focus:outline-none" required>
+          <input type="text" name="username" class="w-full border border-zinc-300 rounded-lg px-4 py-3 text-sm focus:outline-none" required>
         </div>
         <div>
           <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-1.5">Password</label>
@@ -67,12 +68,13 @@
     <aside class="lg:w-64 bg-white border-r border-zinc-200 flex flex-col">
       <div class="p-5 border-b border-zinc-200">
         <a href="./index.html" class="flex items-center gap-3">
-          <div class="h-10 w-10 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-gold">
-            <span class="font-serif text-brand-gold font-bold text-xl">A</span>
+          <div class="h-10 w-10 rounded-full bg-brand-charcoal flex items-center justify-center border border-brand-gold overflow-hidden">
+            <img id="admin-sidebar-logo" src="" class="h-full w-full object-cover hidden">
+            <span id="admin-sidebar-fallback" class="font-serif text-brand-gold font-bold text-xl">⋮</span>
           </div>
-          <div>
-            <p class="font-serif font-bold text-zinc-900 leading-none">Averroes</p>
-            <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Admin</p>
+          <div class="min-w-0">
+            <p id="admin-sidebar-title" class="font-serif font-bold text-zinc-900 leading-none truncate w-full">Admin</p>
+            <p class="text-[10px] text-zinc-500 uppercase tracking-wider">Dashboard</p>
           </div>
         </a>
       </div>

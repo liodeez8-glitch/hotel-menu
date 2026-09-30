@@ -5,12 +5,17 @@
 (function (window) {
   'use strict';
 
-  // Read from Vercel injected config, fallback to local development Averroes keys
+  // Read from Vercel injected config
   const config = window.SITE_CONFIG || {};
-  const SUPABASE_URL = config.supabaseUrl || 'https://ydyfudslhczqegdnfrid.supabase.co';
-  const SUPABASE_ANON_KEY = config.supabaseAnonKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlkeWZ1ZHNsaGN6cWVnZG5mcmlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk4MDk1MDUsImV4cCI6MjEwNTM4NTUwNX0.DX-l8f89_K9uxbbrXhjdd-KyCRZejcrD7szmvSvdb5Y';
+  const SUPABASE_URL = config.supabaseUrl;
+  const SUPABASE_ANON_KEY = config.supabaseAnonKey;
 
-  const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    console.error('CRITICAL: Supabase URL and Anon Key are missing from SITE_CONFIG. Did you set the Vercel Environment Variables?');
+    alert('Database configuration is missing. Please contact the administrator.');
+  }
+
+  const _supabase = window.supabase.createClient(SUPABASE_URL || 'https://placeholder.supabase.co', SUPABASE_ANON_KEY || 'placeholder');
 
   window.AverroesSupabase = _supabase;
   window.SUPABASE_URL = SUPABASE_URL;

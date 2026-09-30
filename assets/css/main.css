@@ -218,3 +218,52 @@ input:focus, select:focus, textarea:focus {
 .animate-fade-in {
   animation: fadeIn 0.4s ease forwards;
 }
+
+/* Skeleton loading placeholders */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0ece6 25%, #e8e3da 37%, #f0ece6 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.skeleton-text-lg {
+  height: 20px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.skeleton-card {
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #f4f4f5;
+  padding: 0.75rem;
+}
+
+.skeleton-pill {
+  height: 36px;
+  width: 100px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+#skeleton-loader {
+  transition: opacity 0.3s ease;
+}
+
+#skeleton-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
